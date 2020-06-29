@@ -10,6 +10,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
 
+  target: 'server',
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
