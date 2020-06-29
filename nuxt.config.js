@@ -84,5 +84,17 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {url: '/users/login', method: 'post', propertyName: 'token'},
+          logout: {url: '/users/logout', method: 'post'},
+          user: {url: '/users/me', method: 'get', propertyName: 'user'}
+        }
+      }
+    }
   }
 }
