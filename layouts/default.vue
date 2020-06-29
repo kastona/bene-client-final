@@ -122,7 +122,6 @@
         dense
       >
         <v-list-item-group
-          v-model="group"
           active-class="primary--text text--accent-4"
         >
           <v-list-item nuxt :to="'/'">
