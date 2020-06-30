@@ -45,7 +45,8 @@ export default {
     {src: '~/plugins/vue-plyr'},
     {src: '~/plugins/clip'},
     {src: '~/plugins/toast', mode: 'client'},
-    {src: '~/plugins/social', mode: 'client'}
+    {src: '~/plugins/social', mode: 'client'},
+    {src: '~/plugins/vuetify'}
   ],
   /*
   ** Auto import components
@@ -56,7 +57,6 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/vuetify',
     '@nuxtjs/moment'
   ],
   /*
@@ -79,11 +79,7 @@ export default {
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
   */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    optionsPath: '~/options.js',
 
-  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

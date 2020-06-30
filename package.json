@@ -11,16 +11,17 @@
     "serve": "nuxt serve"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.11.0",
-    "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "nuxt": "2.13.1",
     "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/moment": "^1.6.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/vuetify": "^1.11.2",
     "axios": "^0.19.2",
     "copy-to-clipboard": "^3.3.1",
     "filepond": "^4.13.0",
     "filepond-plugin-image-preview": "^4.6.1",
     "moment": "^2.24.0",
+    "nuxt": "2.13.1",
     "vee-validate": "^3.2.5",
     "vue-avatar-cropper": "^1.0.6",
     "vue-clipboard2": "^0.3.1",
@@ -28,7 +29,9 @@
     "vue-plyr": "^6.0.4",
     "vue-social-sharing": "^3.0.0-beta.11",
     "vue-toasted": "^1.1.28",
-    "@nuxtjs/vuetify": "^1.11.2"
+    "vuetify": "^2.3.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@mdi/font": "^5.3.45"
+  }
 }
