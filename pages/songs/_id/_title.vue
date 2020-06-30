@@ -120,6 +120,8 @@
           { hid: 'og:site_name', property: 'og:site_name', content: `Benedictionz Media` },
           { hid: 'og:image', property: 'og:image', content: `https://res.cloudinary.com/benedictionz/image/upload/v1593507965/bene_xgg8ml.jpg` },
           { hid: 'og:type', property: 'og:type', content: `article` },
+          { hid: 'og:image:width', property: 'og:image:width', content: `400` },
+          { hid: 'og:image:height', property: 'og:image:height', content: `400` },
         ]
       }
     },
