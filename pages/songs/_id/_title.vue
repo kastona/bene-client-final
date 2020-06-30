@@ -49,9 +49,8 @@
                 <v-btn class=""  small color="">
                   <ShareNetwork
                     network="facebook"
-                    :url="window.location.href"
+                    :url="`bene-client.herokuapp.com/songs/${song._id}/${song.seoTitle}`"
                     :title="`${song.artistName} - ${song.title} | Benedictionz.com`"
-                    :hashtags="`Benedictionz, Music`"
                   >
                     Share on Facebook
                   </ShareNetwork>
@@ -107,7 +106,7 @@
     },
     data: () => ({
       item: 1,
-      rating: 0
+      rating: 0,
     }),
 
     head () {
@@ -115,11 +114,12 @@
         title: this.song.seoTitle.replace(/-/g, ' '),
         meta: [
           // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-          { hid: 'og:title', name: 'og:title', content: `${this.song.seoTitle.replace(/-/g, ' ')}` },
-          { hid: 'og:description', name: 'og:description', content: `${this.song.description}` },
-          {hid: 'og:url', name:'og:url', content: `www.benedictionz.com/songs/${this.song._id}/${this.song.seoTitle}`},
-          { hid: 'og:site_name', name: 'og:site_name', content: `Benedictionz Media` },
-          // { hid: 'image', name: 'image', content: `${this.song.description}` },
+          { hid: 'og:title', property: 'og:title', content: `${this.song.seoTitle.replace(/-/g, ' ')}` },
+          { hid: 'og:description', property: 'og:description', content: `${this.song.description}` },
+          {hid: 'og:url', property:'og:url', content: `www.benedictionz.com/songs/${this.song._id}/${this.song.seoTitle}`},
+          { hid: 'og:site_name', property: 'og:site_name', content: `Benedictionz Media` },
+          { hid: 'og:image', property: 'og:image', content: `https://res.cloudinary.com/benedictionz/image/upload/v1593507965/bene_xgg8ml.jpg` },
+          { hid: 'og:type', property: 'og:type', content: `article` },
         ]
       }
     },
@@ -177,7 +177,6 @@
     },
 
     mounted () {
-
       if(this.song.audio)
       this.player.on('ended', () => {
         this.incrementHitsCount(this.song._id)

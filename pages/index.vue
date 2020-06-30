@@ -50,8 +50,6 @@
         </v-layout>
         <div></div>
       </v-container>
-
-      <div class="py-12"></div>
     </section>
 
   <section id="featured">
