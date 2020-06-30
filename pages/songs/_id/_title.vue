@@ -49,7 +49,7 @@
                 <v-btn class=""  small color="">
                   <ShareNetwork
                     network="facebook"
-                    url="https://news.vuejs.org/issues/180"
+                    :url="window.location.href"
                     :title="`${song.artistName} - ${song.title} | Benedictionz.com`"
                     :hashtags="`Benedictionz, Music`"
                   >
