@@ -20,7 +20,7 @@
             @click:row="handleSelectedArtist"
             loading="true"
             :page.sync="page"
-            hide-actions
+            hide-default-footer
           >
 
           </v-data-table>

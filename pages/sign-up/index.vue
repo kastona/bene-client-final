@@ -57,7 +57,7 @@
               <v-select
                 v-model="user.genre"
                 :items="genres"
-                :error-messages="genreErrors"
+                error-messages="Song genre is required"
                 label="Genre"
                 required
               ></v-select>

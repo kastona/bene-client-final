@@ -18,9 +18,24 @@
 
         <v-row>
           <v-col cols="12" md="8" offset-md="2">
-              <template v-if="song.audio">
-                <v-img  eager :src="`${api}/images/${song._id}`" contain :aspect-ratio="$vuetify.breakpoint.xsOnly? 1.1: 1.7"></v-img>
+              <template>
+                <v-img  eager :src="song.artUrl" contain :aspect-ratio="$vuetify.breakpoint.xsOnly? 1.1: 1.7"></v-img>
               </template>
+            <v-divider class="my-7"></v-divider>
+            <v-responsive
+              class="mx-auto grey--text text--darken-1 font-weight-light mb-8"
+              max-width="720"
+            >
+              <p class="subtitle-1">About Song</p>
+              <p class="wrap-text">{{song.description}}</p>
+            </v-responsive>
+            <v-responsive v-if="song.audio" class="mx-auto mb-4" style="max-width: 800px;">
+              <vue-plyr class="pt-3" ref="plyr">
+                <audio>
+                  <source :src="song.songUrl" type="audio/mp3"/>
+                </audio>
+              </vue-plyr>
+            </v-responsive>
               <template v-else>
                 <vue-plyr>
                   <video ref="plyr" :src="song.songUrl">
@@ -28,13 +43,6 @@
                 </vue-plyr>
               </template>
 
-              <v-responsive v-if="song.audio" class="mx-auto mb-4" style="max-width: 800px;">
-                <vue-plyr class="pt-3" ref="plyr">
-                  <audio>
-                    <source :src="song.songUrl" type="audio/mp3"/>
-                  </audio>
-                </vue-plyr>
-              </v-responsive>
 
 
 
@@ -66,21 +74,8 @@
             <p>{{rateMessage}}</p>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
-        <v-responsive
-          class="mx-auto title grey--text text--darken-1 font-weight-light mb-8"
-          max-width="720"
-        >
-          <p>Song Description</p>
-          <p class="wrap-text">{{song.description}}</p>
-        </v-responsive>
 
-
-
-        <div></div>
-
-
-        <v-divider class="my-7"></v-divider>
+        <v-divider class="my-3"></v-divider>
 
 
         <v-responsive
@@ -92,8 +87,6 @@
           <p class="wrap-text">{{song.lyrics}}</p>
         </v-responsive>
       </v-container>
-
-      <div class="py-12"></div>
     </section>
   </div>
 </template>
@@ -118,7 +111,7 @@
           { hid: 'og:description', property: 'og:description', content: `${this.song.description}` },
           {hid: 'og:url', property:'og:url', content: `www.benedictionz.com/songs/${this.song._id}/${this.song.seoTitle}`},
           { hid: 'og:site_name', property: 'og:site_name', content: `Benedictionz Media` },
-          { hid: 'og:image', property: 'og:image', content: `https://res.cloudinary.com/benedictionz/image/upload/v1593507965/bene_xgg8ml.jpg` },
+          { hid: 'og:image', property: 'og:image', content: `${this.song.artUrl}` },
           { hid: 'og:type', property: 'og:type', content: `article` },
           { hid: 'og:image:width', property: 'og:image:width', content: `400` },
           { hid: 'og:image:height', property: 'og:image:height', content: `400` },

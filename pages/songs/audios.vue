@@ -34,7 +34,7 @@
 
     computed: {
       ...mapGetters({
-        topAudio: 'songs/getTopAudio'
+
       })
     }
   }

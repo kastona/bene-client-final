@@ -7,14 +7,12 @@
       >
         <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = true"></v-app-bar-nav-icon>
 
-        <v-avatar  min-height="49" min-width="49"  @click="$router.push('/')">
+        <v-avatar  size="50"  @click="$router.push('/')">
           <v-img
             :src="require('@/assets/logo.png')"
-            class="mr-5"
             contain
-            height="48"
-            width="48"
-            max-width="48"
+            max-height="70%"
+
 
           />
         </v-avatar>
@@ -67,7 +65,6 @@
           dense
         >
           <v-list-item-group
-            v-model="group"
             active-class="primary--text text--accent-4"
           >
             <v-list-item nuxt :to="'/'">

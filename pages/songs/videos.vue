@@ -1,8 +1,9 @@
 <template>
   <v-row>
     <v-col
-      v-for="(video) in topVideos"
+      v-for="(video, i) in topVideos"
       cols="12"
+      :key="i"
       md="4"
       sm="6"
     >

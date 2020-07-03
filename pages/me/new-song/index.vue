@@ -43,14 +43,14 @@
               auto-grow
             ></v-textarea>
 
-
             <v-select
-              v-model="select"
-              :items="items"
-              :rules="[v => !!v || 'Genre is required']"
+              v-model="song.genre"
+              :items="genres"
+              :error-messages="genreErrors"
               label="Genre"
               required
             ></v-select>
+
 
             <v-radio-group  v-model="row" row>
               <v-radio label="Audio" value="audio"></v-radio>
@@ -78,10 +78,30 @@
               </template>
             </v-file-input>
 
+            <v-file-input
+              v-model="art"
+              placeholder="click to select album art"
+              label="Art input"
+              show-size
+              accept="image/jpeg"
+              outlined
+              dense
+            >
+              <template v-slot:selection="{ text }">
+                <v-chip
+                  small
+                  label
+                  color="primary"
+                >
+                  {{text}}}
+                </v-chip>
+              </template>
+            </v-file-input>
+
 
 
             <v-btn
-              :disabled="!valid || uploading || !file"
+              :disabled="!valid || uploading || !file || !art"
               color="success"
               class="mr-4"
               @click="handleUploadSong"
@@ -193,6 +213,7 @@
     middleware: ['auth'],
     data: () => ({
       file: null,
+      art: null,
 
       song: {
         title: '',
@@ -210,6 +231,14 @@
       completed: false,
       showUploadError: false,
       showAdminContact: false,
+      genres: [
+        'Rap/Hip Hop',
+        'Gospel',
+        'RnB',
+        'Rock',
+        'Country',
+        'Gospel Rap'
+      ],
 
 
       row: 'audio',
@@ -219,14 +248,6 @@
         v => !!v || 'Cannot be blank',
       ],
       select: null,
-      items: [
-        'Gospel',
-        'Rap',
-        'RnB',
-        'POP',
-        'Raggae',
-        'Others'
-      ]
     }),
 
     async asyncData({$axios, redirect, $auth}) {
@@ -244,15 +265,16 @@
       async handleUploadSong() {
 
         const formData = new FormData()
-        this.song.genre = this.select;
 
         for(const key in this.song) {
           formData.append(key, this.song[key])
         }
 
 
-        formData.append('song', this.file)
 
+
+        formData.append('songs', this.file)
+        formData.append('songs', this.art)
 
         try {
           this.uploading = true;

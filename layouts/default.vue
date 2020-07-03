@@ -3,7 +3,9 @@
   <v-app style="background-color: #f1f1ff;" light>
     <v-app-bar
       color="primary"
+      fixed
       dark
+      elevate-on-scroll
     >
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = true"></v-app-bar-nav-icon>
 
@@ -71,13 +73,11 @@
        Admin
       </v-btn>
       <v-spacer />
-
       <v-menu v-if="$auth.user" offset-y>
         <template v-slot:activator="{ on }">
 
 
-          <v-btn :icon="$vuetify.breakpoint.xsOnly" v-on="on" text>
-            <span v-if="!$vuetify.breakpoint.xsOnly">{{$auth.user.stageName}}</span>
+          <v-btn icon v-on="on">
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
@@ -168,6 +168,7 @@
 
 
     <v-main>
+      <div class="py-5"></div>
       <nuxt/>
     </v-main>
     <Footer/>

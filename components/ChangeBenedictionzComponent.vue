@@ -81,6 +81,7 @@
           await this.uploadPicture(formData)
           this.uploading = false;
           this.completed = true;
+          this.$toasted.success('Successful!')
           this.$emit('completed')
 
 
