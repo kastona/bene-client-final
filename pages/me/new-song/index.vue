@@ -65,7 +65,6 @@
               :accept="song.audio? 'audio/mp3' : 'video/mp4'"
               prepend-icon="mdi-music"
               outlined
-
               dense
             >
               <template v-slot:selection="{ text }">

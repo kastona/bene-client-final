@@ -20,7 +20,6 @@ export const getters = {
 export const actions = {
   updateUser({commit}, update) {
     commit('updateUser', update)
-    console.log('user loaded')
   }
 }
 
