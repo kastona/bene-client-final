@@ -274,7 +274,6 @@
 
 
         formData.append('songs', this.file)
-        formData.append('songs', this.art)
 
         try {
           this.uploading = true;
