@@ -57,7 +57,7 @@
               <v-select
                 v-model="user.genre"
                 :items="genres"
-                error-messages="Song genre is required"
+                :rules="[ genreRules ]"
                 label="Genre"
                 required
               ></v-select>
@@ -76,7 +76,7 @@
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-btn :disabled="!valid" :loading="loading" @click="signUp" small color="primary"><span class="text-capitalize">Create account</span></v-btn>
+            <v-btn :disabled="!valid || !user.genre" :loading="loading" @click="signUp" small color="primary"><span class="text-capitalize">Create account</span></v-btn>
             <v-spacer></v-spacer>
             <v-btn @click="$router.push('/login')" small color="primary" text><span class="text-capitalize">Login instead</span></v-btn>
           </v-card-actions>
@@ -124,13 +124,20 @@
 
     methods: {
       ...mapActions({
-          createUser: 'authentication/createUser'
-        }),
+        createUser: 'authentication/createUser'
+      }),
       validate () {
         this.$refs.form.validate()
       },
       reset () {
         this.$refs.form.reset()
+      },
+      genreRules(value) {
+        if(!this.user.genre) {
+          return 'Select your genre'
+        }else {
+          return true
+        }
       },
       resetValidation () {
         this.$refs.form.resetValidation()
