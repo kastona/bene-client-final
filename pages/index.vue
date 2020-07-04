@@ -2,7 +2,7 @@
   <div>
     <section style="background-image: linear-gradient(#23a6d5, #1788a8);">
 
-      <v-container style="min-height: 90vh;" fluid fill-height>
+      <v-container style="min-height: 50vh;" fluid fill-height>
         <v-layout flex align-center justify-center>
           <v-flex class="white--text text-center" xs12 md8 sm6>
               <h2 :class="$vuetify.breakpoint.smAndDown? 'heading-4': 'display-2'" class=" font-weight-bold mb-3">
