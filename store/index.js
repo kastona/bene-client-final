@@ -1,5 +1,5 @@
 export const state = () => ({
-  api: 'http://localhost:4000',//https://steve-benedictonz-api.herokuapp.com',
+  api: 'https://steve-benedictonz-api.herokuapp.com',
   bene: null
 })
 
