@@ -63,7 +63,7 @@ export const actions = {
 
     let axiosConfig = {
       headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
+        'Content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"
       },
       onUploadProgress: e => vuexContext.commit('setUploadProgress', Math.round(e.loaded * 100 / e.total))
