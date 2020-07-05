@@ -5,6 +5,7 @@
       color="primary"
       fixed
       dark
+      app
       elevate-on-scroll
     >
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = true"></v-app-bar-nav-icon>
@@ -114,8 +115,9 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      absolute
-      temporary
+      fixed
+      clipped
+      app
     >
       <v-list
         nav
@@ -168,7 +170,6 @@
 
 
     <v-main>
-      <div class="py-5"></div>
       <nuxt/>
     </v-main>
     <Footer/>

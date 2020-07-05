@@ -1,15 +1,15 @@
 <template>
   <div>
-    <section style="background-image: linear-gradient(#23a6d5, #1788a8);">
+    <section class="welcome-background">
 
-      <v-container style="min-height: 50vh;" fluid fill-height>
+      <v-container style="min-height: 65vh;" fluid fill-height>
         <v-layout flex align-center justify-center>
           <v-flex class="white--text text-center" xs12 md8 sm6>
-              <h2 :class="$vuetify.breakpoint.smAndDown? 'heading-4': 'display-2'" class=" font-weight-bold mb-3">
+              <h2 class=" display-2 font-weight-bold mb-3">
                 {{details.title}}</h2>
 
               <v-responsive
-                :class="$vuetify.breakpoint.smAndDown? 'subtitle-1': 'title'" class="mx-auto font-weight-light mb-8"
+                 class="mx-auto title font-weight-light mb-8"
                 max-width="720"
               >
                 {{details.welcome}}
@@ -59,8 +59,8 @@
       <div class="py-12"></div>
 
       <v-container light class="text-center">
-        <h2 :class="$vuetify.breakpoint.smAndDown?'h4':'h3'"
-            class="primary--text text--lighten-1 font-weight-bold mb-3">Featured Songs</h2>
+        <h2
+            class="primary--text text--lighten-1 font-weight-bold mb-3">Featured Songs</h2 >
 
         <v-responsive
           class="mx-auto"
@@ -209,15 +209,10 @@
 </script>
 
 <style>
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+
+  .welcome-background {
+
+    background-image: linear-gradient(#23a6d5, #0e7a91);
   }
+
 </style>
