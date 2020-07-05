@@ -1,185 +1,184 @@
 <template>
   <v-container light class="text-center pt-0 mt-5">
     <v-card flat max-width="600px" class="mx-auto">
-      <v-card flat v-if="!uploading && !completed">
-        <v-container fluid>
-          <v-form
-            ref="form"
-            v-model="valid"
-            lazy-validation
-          >
-            <v-text-field
-              label="Song title"
-              v-model="song.title"
-              :rules="rules"
-            ></v-text-field>
 
-            <v-text-field
-              label="Artist Name"
-              v-model="song.artistName"
-              :rules="rules"
-            ></v-text-field>
+          <v-card flat v-if="!uploading && !completed">
+            <v-container fluid>
+              <v-form
+                ref="form"
+                v-model="valid"
+                lazy-validation
+              >
+                <v-text-field
+                  label="Song title"
+                  v-model="song.title"
+                  :rules="rules"
+                ></v-text-field>
 
-            <v-text-field
-              label="Featured"
-              v-model="song.featured"
-            ></v-text-field>
-            <v-textarea
-              name="description"
-              v-model="song.description"
-              background-color="grey lighten-2"
-              label="Song Description"
-              persistent-hint
-              hint="Could be blank"
-              auto-grow
-            ></v-textarea>
-            <v-textarea
-              name="lyrics"
-              v-model="song.lyrics"
-              background-color="grey lighten-2"
-              label="Lyrics"
-              persistent-hint
-              hint="Could be blank"
-              auto-grow
-            ></v-textarea>
+                <v-text-field
+                  label="Artist Name"
+                  v-model="song.artistName"
+                  :rules="rules"
+                ></v-text-field>
 
-            <v-select
-              v-model="song.genre"
-              :items="genres"
-              :error-messages="genreErrors"
-              label="Genre"
-              required
-            ></v-select>
+                <v-text-field
+                  label="Featured"
+                  v-model="song.featured"
+                ></v-text-field>
+                <v-textarea
+                  name="description"
+                  v-model="song.description"
+                  background-color="grey lighten-2"
+                  label="Song Description"
+                  persistent-hint
+                  hint="Could be blank"
+                  auto-grow
+                ></v-textarea>
+                <v-textarea
+                  name="lyrics"
+                  v-model="song.lyrics"
+                  background-color="grey lighten-2"
+                  label="Lyrics"
+                  persistent-hint
+                  hint="Could be blank"
+                  auto-grow
+                ></v-textarea>
+
+                <v-select
+                  v-model="song.genre"
+                  :items="genres"
+                  :error-messages="genreErrors"
+                  label="Genre"
+                  required
+                ></v-select>
 
 
-            <v-radio-group  v-model="row" row>
-              <v-radio label="Audio" value="audio"></v-radio>
-              <v-radio label="Video" value="video"></v-radio>
-            </v-radio-group>
+                <v-radio-group  v-model="row" row>
+                  <v-radio label="Audio" value="audio"></v-radio>
+                  <v-radio label="Video" value="video"></v-radio>
+                </v-radio-group>
 
-            <v-file-input
-              v-model="file"
-              placeholder="click to select your song"
-              label="File input"
-              show-size
-              :accept="song.audio? 'audio/mp3' : 'video/mp4'"
-              prepend-icon="mdi-music"
-              outlined
-              dense
-            >
-              <template v-slot:selection="{ text }">
-                <v-chip
-                  small
-                  label
-                  color="primary"
+                <v-file-input
+                  v-model="file"
+                  placeholder="click to select your song"
+                  label="File input"
+                  show-size
+                  :accept="song.audio? 'audio/mp3' : 'video/mp4'"
+                  prepend-icon="mdi-music"
+                  outlined
+                  dense
                 >
-                  {{text}}}
-                </v-chip>
-              </template>
-            </v-file-input>
+                  <template v-slot:selection="{ text }">
+                    <v-chip
+                      small
+                      label
+                      color="primary"
+                    >
+                      {{text}}}
+                    </v-chip>
+                  </template>
+                </v-file-input>
 
-            <v-file-input
-              v-model="art"
-              placeholder="click to select album art"
-              label="Art input"
-              show-size
-              accept="image/jpeg"
-              outlined
-              dense
-            >
-              <template v-slot:selection="{ text }">
-                <v-chip
-                  small
-                  label
-                  color="primary"
+                <v-file-input
+                  v-model="art"
+                  placeholder="Upload album art"
+                  label="Art input"
+                  show-size
+                  :accept="'image/jpeg'"
+                  outlined
+                  dense
                 >
-                  {{text}}}
-                </v-chip>
-              </template>
-            </v-file-input>
+                  <template v-slot:selection="{ text }">
+                    <v-chip
+                      small
+                      label
+                      color="primary"
+                    >
+                      {{text}}}
+                    </v-chip>
+                  </template>
+                </v-file-input>
 
+                <v-btn
+                  :disabled="!valid || uploading || !file || !art"
+                  color="success"
+                  class="mr-4"
+                  @click="handleUploadSong"
+                >
+                  Upload
+                  <v-icon right dark>mdi-cloud-upload</v-icon>
+                </v-btn>
 
+                <v-btn
+                  color="error"
+                  class="mr-4"
+                  @click="reset"
+                >
+                  Reset Form
+                </v-btn>
 
-            <v-btn
-              :disabled="!valid || uploading || !file || !art"
-              color="success"
-              class="mr-4"
-              @click="handleUploadSong"
-            >
-              Upload
-              <v-icon right dark>mdi-cloud-upload</v-icon>
-            </v-btn>
+              </v-form>
 
-            <v-btn
-              color="error"
-              class="mr-4"
-              @click="reset"
-            >
-              Reset Form
-            </v-btn>
+            </v-container>
+          </v-card>
 
-          </v-form>
-
-        </v-container>
-      </v-card>
-
-      <v-card
-        v-else
-        elevation="6"
-        class="text-left"
-      >
-        <v-card flat>
-          <div class="d-flex flex-no-wrap justify-space-between">
-            <div>
-              <v-card-title
-                class="title primary--text"
-                v-text="song.title"
-              ></v-card-title>
-
-              <v-card-subtitle class="grey--text" v-text="song.artistName"></v-card-subtitle>
-            </div>
-
-            <v-avatar
-              class="ma-3"
-              size="50"
-              tile
-            >
-              <v-icon  x-large color="primary">mdi-music-box</v-icon>
-
-            </v-avatar>
-          </div>
-        </v-card>
-
-
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-progress-linear
-            :value="uploadProgress"
-            height="20"
-            v-if="uploadProgress <100"
-            class="mx-5"
-            reactive
+          <v-card
+            v-else
+            elevation="6"
+            class="text-left"
           >
-            <strong style="color: white;"><span v-if="uploading && !completed">Uploading...</span> <span v-if="completed">Upload Successful!</span> {{ uploadProgress }}%</strong>
-          </v-progress-linear>
+            <v-card flat>
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                  <v-card-title
+                    class="title primary--text"
+                    v-text="song.title"
+                  ></v-card-title>
 
-          <v-progress-linear
-            :indeterminate="!showUploadError && !completed"
-            height="20"
-            v-if="uploadProgress >=100"
-            class="mx-5"
-            reactive
-            :color="showUploadError?'secondary': 'primary'"
-          >
-            <strong v-if="!showUploadError && !completed" style="color: white;">preparing your upload...</strong>
-            <strong v-if="!showUploadError && completed">Successful!</strong>
-            <strong v-if="showUploadError && completed" style="color: white;">Upload failed</strong>
-          </v-progress-linear>
-          <v-btn @click="$router.go(0)" v-if="showUploadError">Retry</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn v-if="completed" nuxt :to="{ path: `/songs/${song._id}/${song.seoTitle}`}" small color="primary">Open</v-btn>
-        </v-card-actions>
-      </v-card>
+                  <v-card-subtitle class="grey--text" v-text="song.artistName"></v-card-subtitle>
+                </div>
+
+                <v-avatar
+                  class="ma-3"
+                  size="50"
+                  tile
+                >
+                  <v-icon  x-large color="primary">mdi-music-box</v-icon>
+
+                </v-avatar>
+              </div>
+            </v-card>
+
+
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-progress-linear
+                :value="uploadProgress"
+                height="20"
+                v-if="uploadProgress <100"
+                class="mx-5"
+                reactive
+              >
+                <strong style="color: white;"><span v-if="uploading && !completed">Uploading...</span> <span v-if="completed">Upload Successful!</span> {{ uploadProgress }}%</strong>
+              </v-progress-linear>
+
+              <v-progress-linear
+                :indeterminate="!showUploadError && !completed"
+                height="20"
+                v-if="uploadProgress >=100"
+                class="mx-5"
+                reactive
+                :color="showUploadError?'secondary': 'primary'"
+              >
+                <strong v-if="!showUploadError && !completed" style="color: white;">preparing your upload...</strong>
+                <strong v-if="!showUploadError && completed">Successful!</strong>
+                <strong v-if="showUploadError && completed" style="color: white;">Upload failed</strong>
+              </v-progress-linear>
+              <v-btn @click="$router.go(0)" v-if="showUploadError">Retry</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn nuxt :to="{ path: `/songs/${song._id}/${song.seoTitle}`}" color="primary" v-if="completed">Open</v-btn>
+            </v-card-actions>
+          </v-card>
     </v-card>
 
     <v-dialog
@@ -215,6 +214,7 @@
       file: null,
       art: null,
 
+
       song: {
         title: '',
         artistName: '',
@@ -227,6 +227,7 @@
         promoted: false
       },
       uploadedSong: {},
+      e6:1,
       uploading: false,
       completed: false,
       showUploadError: false,
@@ -274,24 +275,13 @@
 
 
         formData.append('songs', this.file)
-
+        formData.append('songs', this.art)
         try {
           this.uploading = true;
           const {data} = await this.uploadSong(formData)
           this.uploading = false;
           this.completed = true;
-          this.$toasted.show('You need to contact Admin for approval', {
-            action : {
-              text : 'Contact',
-              onClick : (e, toastObject) => {
-                this.showAdminContact = true
-                toastObject.goAway();
-              }
-            },
-
-            duration: 20000
-
-          })
+          this.$toasted.success('successful!')
 
           this.song = data;
 
@@ -305,8 +295,6 @@
         })
           this.showUploadError = true
         }
-
-
 
       },
 
