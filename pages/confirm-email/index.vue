@@ -43,6 +43,7 @@
           await this.$axios.post(`/users/confirm-email/${this.token}`)
           this.$toasted.success('Email Confirmed!')
           this.loading = false;
+          await this.$auth.fetchUser()
           await this.$router.push('/me')
         }catch(error) {
           console.log(error.message)
