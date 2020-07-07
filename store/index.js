@@ -1,6 +1,7 @@
 export const state = () => ({
   api: 'https://steve-benedictonz-api.herokuapp.com',
-  bene: null
+  bene: null,
+  tempUser: null
 })
 
 export const mutations = {
@@ -9,6 +10,9 @@ export const mutations = {
   },
   setDetails(state, bene) {
     state.bene = bene
+  },
+  setTempUser(state, user) {
+    state.tempUser = user
   }
 }
 
@@ -19,6 +23,10 @@ export const getters = {
 
   getBeneDetails: state => {
     return state.bene
+  },
+
+  getTempUser: state => {
+    return state.tempUser
   }
 }
 
@@ -26,5 +34,8 @@ export const getters = {
 export const actions = {
   setDetails({commit}, details) {
     commit('setDetails', details)
+  },
+  setTempUser({commit}, user) {
+    commit('setTempUser', user)
   }
 }

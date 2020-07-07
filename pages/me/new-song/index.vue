@@ -254,7 +254,7 @@
     async asyncData({$axios, redirect, $auth}) {
       const {data} = await $axios.get('/users/me/can-upload');
 
-      if(!data.canUpload) {
+      if(!data.canUpload || !$auth.user.isVerified) {
         redirect('/me')
       }
     },

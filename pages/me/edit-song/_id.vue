@@ -79,7 +79,10 @@
 
     }),
 
-    async asyncData ({ params,$axios }) {
+    async asyncData ({ params,$axios, redirect, $auth }) {
+      if(!$auth.user.isVerified) {
+        redirect('/me')
+      }
       const { data } = await $axios.get(`/songs/${params.id}`)
       return { song: data }
     },

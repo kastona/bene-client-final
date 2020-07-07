@@ -50,7 +50,6 @@
 
               <v-text-field
                 v-model="user.base"
-                :rules="baseRules"
                 label="Based/Location"
               ></v-text-field>
 
@@ -68,6 +67,7 @@
                 @click:append="() => (showPass = !showPass)"
                 :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                 id="password"
+                :rules="passwordRules"
                 label="Password"
                 name="password"
                 v-model:value="user.password"
@@ -102,6 +102,10 @@
       stageNameRules: [
         v => !!v || 'Stage Name is required',
       ],
+      passwordRules: [
+        v => !!v || 'Password is required',
+      ],
+
       genres: [
         'Rap/Hip Hop',
         'Gospel',
@@ -124,7 +128,8 @@
 
     methods: {
       ...mapActions({
-        createUser: 'authentication/createUser'
+        createUser: 'authentication/createUser',
+        setTempUser: 'setTempUser'
       }),
       validate () {
         this.$refs.form.validate()
@@ -146,8 +151,9 @@
         try {
           this.loading= true
           await this.createUser(this.user)
+          this.setTempUser(this.user)
           this.$toasted.success('Account Created Successfully')
-          this.$router.push('/login')
+          await this.$router.push('/confirm-email')
         }catch(error) {
           this.loading= false;
           this.$toasted.error(error.response.data)

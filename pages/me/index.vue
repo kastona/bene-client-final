@@ -107,10 +107,11 @@
 
 
             <v-card color="primary" elevation="5" class="mt-3 pa-3">
-              <v-btn v-if="uploadData.canUpload" small to="/me/new-song" class="primary--text text-capitalize my-1" color="white" elevation="0">
+              <v-btn v-if="uploadData.canUpload && $auth.user.isVerified" small to="/me/new-song" class="primary--text text-capitalize my-1" color="white" elevation="0">
                 Upload Song
               </v-btn>
-              <small class="white--text" v-else>You have more than 3 songs needing approval. Contact Admin <br> <span style="font-weight: bolder">081832828333</span></small>
+              <v-btn @click="$router.push('/confirm-email')" class="primary--text text-capitalize my-1" color="white" elevation="0" small v-else-if="!$auth.user.isVerified">Click To Verify Email</v-btn>
+              <small class="white--text" v-else-if="!uploadData.canUpload">You have more than 3 songs needing approval. Contact Admin <br> <span style="font-weight: bolder">081832828333</span></small>
             </v-card>
           </v-col>
 
