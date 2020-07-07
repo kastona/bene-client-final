@@ -73,7 +73,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL:'https://steve-benedictonz-api.herokuapp.com'
+    baseURL: 'https://steve-benedictonz-api.herokuapp.com'
   },
   /*
   ** vuetify module configuration

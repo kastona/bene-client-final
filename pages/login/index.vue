@@ -71,11 +71,16 @@
         try {
           this.loading = true
           await this.$auth.loginWith('local', {data: this.user})
+
           this.$toasted.success('Login Successful')
-          this.$router.push('/')
+          if(!this.$auth.user.isVerified) {
+            await this.$router.push(`/confirm-email`)
+          }else {
+            await this.$router.push('/')
+          }
         }catch(error) {
           this.loading = false
-          this.$toasted.error('Could\'t login. Check your details!')
+          this.$toasted.error(error.response.data)
         }
 
       }

@@ -150,7 +150,7 @@
           this.$router.push('/login')
         }catch(error) {
           this.loading= false;
-          this.$toasted.error('Could not create account')
+          this.$toasted.error(error.response.data)
         }
       }
     },
