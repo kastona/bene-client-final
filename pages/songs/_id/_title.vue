@@ -29,14 +29,14 @@
               <p class="subtitle-1">About Song</p>
               <p class="wrap-text">{{song.description}}</p>
             </v-responsive>
-            <v-responsive v-if="song.audio" class="mx-auto mb-4" style="max-width: 800px;">
+            <v-responsive v-if="song.audio && song.approved" class="mx-auto mb-4" style="max-width: 800px;">
               <vue-plyr class="pt-3" ref="plyr">
                 <audio>
                   <source :src="song.songUrl" type="audio/mp3"/>
                 </audio>
               </vue-plyr>
             </v-responsive>
-              <template v-else>
+              <template v-if="!song.audio && song.approved">
                 <vue-plyr>
                   <video ref="plyr" :src="song.songUrl">
                   </video>
@@ -49,7 +49,7 @@
           </v-col>
           <v-col cols="12">
             <template>
-              <v-responsive class="mx-auto">
+              <v-responsive v-if="song.approved" class="mx-auto">
                 <v-btn @click="initiateDownload(song.songUrl)" small color="primary" dark>
                   <v-icon  small>mdi-download</v-icon> Download
                 </v-btn>
@@ -64,9 +64,12 @@
                   </ShareNetwork>
                 </v-btn>
               </v-responsive>
+              <v-responsive v-else>
+                <p class="title">Song not approved yet! <br>If you are the owner, contact the admin on: 08032890043</p>
+              </v-responsive>
             </template>
           </v-col>
-          <v-col v-if="canRate" cols="12" md="8" offset-md="2">
+          <v-col v-if="canRate && song.approved" cols="12" md="8" offset-md="2">
             Rate song <v-rating  dense size="20" color="#FFDF00" v-model="rating"></v-rating>
             <v-btn @click="rate" :disabled="rating<1 ">Rate</v-btn>
           </v-col>
