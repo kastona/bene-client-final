@@ -15,6 +15,12 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
 
+  loading: {
+    height: '4px',
+    continuous: true,
+    color: '#1f1f1f'
+  },
+
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -35,7 +41,8 @@ export default {
   ** Global CSS
   */
   css: [
-    'plyr/dist/plyr.css'
+    'plyr/dist/plyr.css',
+    '~/assets/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -52,6 +59,8 @@ export default {
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
   */
+
+  transition: 'page',
   components: true,
   /*
   ** Nuxt.js dev-modules
