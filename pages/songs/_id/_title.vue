@@ -112,7 +112,7 @@
           // hid is used as unique identifier. Do not use `vmid` for it as it will not work
           { hid: 'og:title', property: 'og:title', content: `${this.song.seoTitle.replace(/-/g, ' ')}` },
           { hid: 'og:description', property: 'og:description', content: `${this.song.description}` },
-          {hid: 'og:url', property:'og:url', content: `www.benedictionz.com/songs/${this.song._id}/${this.song.seoTitle}`},
+          {hid: 'og:url', property:'og:url', content: `https://www.benedictionz.com/songs/${this.song._id}/${this.song.seoTitle}`},
           { hid: 'og:site_name', property: 'og:site_name', content: `Benedictionz Media` },
           { hid: 'og:image', property: 'og:image', content: `${this.song.artUrl}` },
           { hid: 'og:type', property: 'og:type', content: `article` },
