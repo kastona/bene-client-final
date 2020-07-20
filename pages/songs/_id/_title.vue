@@ -115,7 +115,7 @@
           {hid: 'og:url', property:'og:url', content: `https://www.benedictionz.com/songs/${this.song._id}/${this.song.seoTitle}`},
           { hid: 'og:site_name', property: 'og:site_name', content: `Benedictionz Media` },
           { hid: 'og:image', property: 'og:image', content: `${this.song.artUrl}` },
-          { hid: 'og:type', property: 'og:type', content: `article` },
+          { hid: 'og:type', property: 'og:type', content: `music.song` },
           { hid: 'og:image:width', property: 'og:image:width', content: `400` },
           { hid: 'og:image:height', property: 'og:image:height', content: `400` },
         ]
