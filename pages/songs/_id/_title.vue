@@ -57,7 +57,7 @@
                 <v-btn class=""  small color="">
                   <ShareNetwork
                     network="facebook"
-                    :url="`bene-client.herokuapp.com/songs/${song._id}/${song.seoTitle}`"
+                    :url="`https://www.benedictionz.com/songs/${song._id}/${song.seoTitle}`"
                     :title="`${song.artistName} - ${song.title} | Benedictionz.com`"
                   >
                     Share on Facebook
