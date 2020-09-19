@@ -82,7 +82,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL:'http://localhost:4000'//'https://steve-benedictonz-api.herokuapp.com'
+    baseURL:'https://steve-benedictonz-api.herokuapp.com'
   },
   /*
   ** vuetify module configuration
