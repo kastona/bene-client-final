@@ -201,7 +201,7 @@
 
     async asyncData ({ $axios }) {
       const api= 'https://steve-benedictonz-api.herokuapp.com'
-      const userSongsData = await $axios.get(`/mysongs?audio=true&limit=5`)
+      const userSongsData = await $axios.get(`/mysongs?audio=true`)
       const userVideosData = await $axios.get(`/mysongs?audio=false`)
       const canUploadRes = await $axios.get('/users/me/can-upload')
       return { userSongs: userSongsData.data, userVideos: userVideosData.data, uploadData: canUploadRes.data }

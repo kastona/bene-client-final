@@ -18,10 +18,10 @@
 
         <v-row>
           <v-col cols="12" md="8" offset-md="2">
-              <template>
+              <template v-if="song.audio">
                 <v-img  eager :src="song.artUrl.length > 1? song.artUrl: 'https://res.cloudinary.com/benedictionz/image/upload/v1593870413/benedictionz%20files/bene_ylek4a.jpg'" contain :aspect-ratio="$vuetify.breakpoint.xsOnly? 1.1: 1.7"></v-img>
               </template>
-            <v-divider class="my-7"></v-divider>
+            <v-divider v-if="song.audio" class="my-7"></v-divider>
             <v-responsive
               class="mx-auto grey--text text--darken-1 font-weight-light mb-8"
               max-width="720"

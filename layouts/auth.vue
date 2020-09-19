@@ -9,16 +9,17 @@
           id="scroll-target"
         >
           <v-avatar
-
-            color="grey lighten-5"
-            size="50"
+            size="40"
             @click="$router.push('/')"
+            color="grey lighten-5"
           >
             <v-img
-              contain
-              max-height="70%"
               :src="require('@/assets/logo.png')"
-            ></v-img>
+              contain
+              height="100%"
+
+
+            />
           </v-avatar>
 
           <v-toolbar-title  @click="$router.push('/')" v-if="$vuetify.breakpoint.smAndUp" class="font-weight-black white--text headline">

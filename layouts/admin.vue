@@ -7,11 +7,15 @@
       >
         <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = true"></v-app-bar-nav-icon>
 
-        <v-avatar  size="50"  @click="$router.push('/')">
+        <v-avatar
+          size="40"
+          @click="$router.push('/')"
+          color="grey lighten-5"
+        >
           <v-img
             :src="require('@/assets/logo.png')"
             contain
-            max-height="70%"
+            height="100%"
 
 
           />
