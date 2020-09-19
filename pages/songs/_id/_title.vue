@@ -29,14 +29,14 @@
               <p class="subtitle-1">About Song</p>
               <p class="wrap-text">{{song.description}}</p>
             </v-responsive>
-            <v-responsive v-if="song.audio && song.approved" class="mx-auto mb-4" style="max-width: 800px;">
+            <v-responsive v-if="song.audio && (song.approved || $auth.user.admin)" class="mx-auto mb-4" style="max-width: 800px;">
               <vue-plyr class="pt-3" ref="plyr">
                 <audio>
                   <source :src="song.songUrl" type="audio/mp3"/>
                 </audio>
               </vue-plyr>
             </v-responsive>
-              <template v-if="!song.audio && song.approved">
+              <template v-if="!song.audio && (song.approved || $auth.user.admin)">
                 <vue-plyr>
                   <video ref="plyr" :src="song.songUrl">
                   </video>
